@@ -1,0 +1,11 @@
+%h3 Subject list
+
+= link_to 'New Subject',new_subject_path, class: 'btn btn-primary'
+
+
+- @subjects.each do |subject|
+  %p= subject.title
+  %p= subject.description
+  .actions
+    = link_to 'Edit', edit_subject_path(subject)
+    = link_to 'Destroy', subject_path(subject), method: :delete, data: { confirm: 'Are you sure you want to delete this subject?' }

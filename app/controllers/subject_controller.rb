@@ -1,2 +1,0 @@
-class SubjectController < InstructorController
-end
