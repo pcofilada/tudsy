@@ -36,6 +36,10 @@ class AnswerExam extends Component {
         const { title, questions } = data;
 
         this.setState({ title, questions, answers: Array.from(Object.keys(questions)) });
+
+        for (let question in questions) {
+          this.fetchOtherChoices(questions[question], question);
+        }
       })
       .catch(error => {
         console.log(error);
@@ -106,39 +110,68 @@ class AnswerExam extends Component {
         {Object.keys(questions).map(key => (
           <li className="question" key={key}>
             <div>{questions[key].item}</div>
-            <div className="choices">
-              <label>
-                <input
-                  type="radio"
-                  name={`question-${key}`}
-                  value={questions[key].answer}
-                  onChange={(event) => this.handleSelectAnswer(event, key)}
-                />
-                {questions[key].answer}
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  name={`question-${key}`}
-                  value="Wrong"
-                  onChange={(event) => this.handleSelectAnswer(event, key)}
-                />
-                Wrong
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  name={`question-${key}`}
-                  value="Another Wrong"
-                  onChange={(event) => this.handleSelectAnswer(event, key)}
-                />
-                Another Wrong
-              </label>
-            </div>
+            {this.renderChoices(key)}
           </li>
         ))}
       </ol>
     );
+  }
+
+  renderChoices (key) {
+    const { questions } = this.state;
+
+    if (questions[key].choices) {
+      return (
+        <div className="choices">
+          <label>
+            <input
+              type="radio"
+              name={`question-${key}`}
+              value={questions[key].answer}
+              onChange={(event) => this.handleSelectAnswer(event, key)}
+            />
+            {questions[key].answer}
+          </label>
+          {questions[key].choices.map(choice => (
+            <label key={choice}>
+              <input
+                type="radio"
+                name={`question-${key}`}
+                value={choice}
+                onChange={(event) => this.handleSelectAnswer(event, key)}
+              />
+              {choice}
+            </label>
+          ))}
+        </div>
+      );
+    }
+
+    return <div />;
+  }
+
+  fetchOtherChoices (question, index) {
+    const url = `https://api.datamuse.com/words?sl=${question.answer}&max=3`;
+    const config = {
+      method: 'GET',
+    };
+
+    fetch(url, config)
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        const { questions } = this.state;
+        const newChoices = data.map(d => d.word );
+        const newQuestions = Object.keys(questions).map( key => {
+          if (index !== key) return questions[key];
+
+          return { ...questions[key], choices: newChoices };
+        });
+
+        this.setState({ questions: newQuestions });
+      });
+
   }
 
   render () {
