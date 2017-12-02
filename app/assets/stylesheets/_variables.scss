@@ -18,13 +18,16 @@ $pink-rose           : #ff3781;
 
 // light colors
 $bg: #f7faff;
-$bg-sidebar: #25344A;
 $cloud-gray: #d7d7d7;
 
 // dark colors
 $dark-gray: #333d45;
 $dusk-gray: #1e3444;
+$metal-blue: #25344A;
 
 // font color
 $font-color-1: $dark-gray;
 $font-color-2: $dusk-gray;
+
+//sidebar
+$bg-sidebar: $metal-blue;
