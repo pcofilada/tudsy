@@ -9,4 +9,8 @@ Rails.application.routes.draw do
   end
   
   root 'home#index'
+
+  resources :subjects, only: :show do
+    resources :exams, only: %i[new create]
+  end
 end
