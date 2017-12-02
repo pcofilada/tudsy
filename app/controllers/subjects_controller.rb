@@ -7,7 +7,11 @@ class SubjectsController < DashboardController
   end
 
   def show
-    @pendings = SubjectEnrolled.pending
+    @approveds = @subject.subject_enrolleds.approved
+    @pendings = @subject.subject_enrolleds.pending
+    @exams = @subject.exams.order(created_at: :desc)
+    @documents = @subject.documents.order(created_at: :desc)
+    @document = Document.new
   end
 
   def new
@@ -49,6 +53,6 @@ class SubjectsController < DashboardController
   end
 
   def set_subject
-    @subject = Subject.find(params[:id])
+    @subject = current_user.subjects.find(params[:id])
   end
 end
