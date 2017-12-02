@@ -88,7 +88,7 @@ class CreateExam extends Component {
         return response.json();
       })
       .then(data => {
-        console.log(data);
+        window.location = `/subjects/${subjectId}`
       })
       .catch(error => {
         console.log(error);
@@ -182,19 +182,19 @@ class CreateExam extends Component {
                   onChange={(event) => this.handleItemChange(event, index, 'answer')}
                 />
               </div>
-            <button
+            <a
               className="btn-delete"
               onClick={() => this.removeItem(index)}
               title="delete"
               >
               <i className="icon ion-ios-close-outline" />
-            </button>
+            </a>
           </div>
         ))}
-        <button className="btn-link" onClick={this.addItem}>
+        <a className="btn-link" onClick={this.addItem}>
           <i className="icon ion-ios-plus-empty" />
           &nbsp;ADD ITEM
-        </button>
+        </a>
       </section>
     );
   }
