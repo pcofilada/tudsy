@@ -1,5 +1,6 @@
-class SubjectsController < ApplicationController
+class SubjectsController < DashboardController
   before_action :set_subject, only: %i[show edit update destroy]
+  layout 'application', only: :conference
 
   def index
     @subjects = current_user.subjects.order(created_at: :desc)
