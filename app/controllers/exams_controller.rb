@@ -11,6 +11,10 @@ class ExamsController < DashboardController
     end
   end
 
+  def results
+
+  end
+
   def show
     exam = @subject.exams.find(params[:id])
 
