@@ -9,5 +9,5 @@
             = @subject.title
     .row
       .col-md-9
-        #create-exam{"data-subject-id"=> params[:subject_id]}
+        #create-exam{"data-subject-id"=> @subject.id, "data-subject-title"=> @subject.title}
         = javascript_pack_tag 'create_exam'

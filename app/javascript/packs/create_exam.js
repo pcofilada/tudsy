@@ -92,7 +92,7 @@ class CreateExam extends Component {
       })
       .catch(error => {
         console.log(error);
-      }); 
+      });
   }
 
   addItem () {
@@ -115,12 +115,14 @@ class CreateExam extends Component {
 
   renderTitleInput () {
     const { title } = this.state;
-
+    const { subjectTitle } = this.props;
     return (
       <div className="form-group">
+        <label htmlFor={`${title}-label`}>Title</label>
         <input
+          id={`${title}-label`}
           type="text"
-          placeholder="Exam Title"
+          placeholder={`Title for ${subjectTitle}`}
           className="form-control"
           value={title}
           onChange={this.handleTitleChange}
@@ -138,7 +140,9 @@ class CreateExam extends Component {
 
     return (
       <div className="form-group">
+        <label htmlFor="timedurationlabel">Time Duration</label>
         <input
+          id="timedurationlabel"
           type="text"
           placeholder="00:00"
           className="form-control"
@@ -153,28 +157,45 @@ class CreateExam extends Component {
     const { items } = this.state;
 
     return (
-      <div>
+      <section className="qna">
         {items.map((item, index) => (
-          <div className="form-group" key={index}>
-            <input
-              type="text"
-              placeholder="Question"
-              className="form-control"
-              value={item.question}
-              onChange={(event) => this.handleItemChange(event, index, 'question')}
-            />
-            <input
-              type="text"
-              placeholder="Answer"
-              className="form-control"
-              value={item.answer}
-              onChange={(event) => this.handleItemChange(event, index, 'answer')}
-            />
-            <div onClick={() => this.removeItem(index)}>Remove Item</div>
+          <div key={index} className="qna-row">
+              <div className="form-group">
+                <label htmlFor={`question-${index}`}>Question #{index+1}</label>
+                <input
+                  id={`question-${index}`}
+                  type="text"
+                  placeholder="Question"
+                  className="form-control"
+                  value={item.question}
+                  onChange={(event) => this.handleItemChange(event, index, 'question')}
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor={`answer-${index}`}>Answer</label>
+                <input
+                  id={`answer-${index}`}
+                  type="text"
+                  placeholder="Answer"
+                  className="form-control"
+                  value={item.answer}
+                  onChange={(event) => this.handleItemChange(event, index, 'answer')}
+                />
+              </div>
+            <button
+              className="btn-delete"
+              onClick={() => this.removeItem(index)}
+              title="delete"
+              >
+              <i className="icon ion-ios-close-outline" />
+            </button>
           </div>
         ))}
-        <div onClick={this.addItem}>Add Item</div>
-      </div>
+        <button className="btn-link" onClick={this.addItem}>
+          <i className="icon ion-ios-plus-empty" />
+          &nbsp;ADD ITEM
+        </button>
+      </section>
     );
   }
 
@@ -188,12 +209,15 @@ class CreateExam extends Component {
 
   render () {
     return (
-      <form onSubmit={this.handleFormSubmit}>
-        {this.renderTitleInput()}
-        {this.renderDurationInput()}
-        {this.renderQuestions()}
-        <button>Submit</button>
-      </form>
+      <div className="card">
+        <form onSubmit={this.handleFormSubmit} className="clearfix">
+          {this.renderTitleInput()}
+          {this.renderDurationInput()}
+          <hr />
+          {this.renderQuestions()}
+          <button className="btn btn-success pull-right" type="button">Submit</button>
+        </form>
+      </div>
     );
   }
 }
@@ -201,9 +225,10 @@ class CreateExam extends Component {
 document.addEventListener('DOMContentLoaded', () => {
   const container = document.getElementById('create-exam');
   const subjectId = container.getAttribute('data-subject-id');
+  const subjectTi = container.getAttribute('data-subject-title');
 
   render(
-    <CreateExam subjectId={subjectId} />,
+    <CreateExam subjectId={subjectId} subjectTitle={subjectTi} />,
     container,
   );
 });
