@@ -3,4 +3,6 @@ class SubjectEnrolled < ApplicationRecord
 
   belongs_to :student
   belongs_to :subject
+
+  scope :pending, ->  { where(status: 'pending') }
 end

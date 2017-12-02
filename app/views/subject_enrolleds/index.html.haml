@@ -1,0 +1,6 @@
+%h3 Enroll Subject
+
+- @subjects.each do |subject|
+  = subject.title
+  = subject.description
+  = link_to 'View', view_subject_enrolleds_path(subject_id: subject.id)

@@ -1,8 +1,12 @@
 class SubjectsController < ApplicationController
-  before_action :set_subject, only: %i[edit update destroy]
+  before_action :set_subject, only: %i[show edit update destroy]
 
   def index
     @subjects = current_user.subjects.order(created_at: :desc)
+  end
+
+  def show
+    @pendings = SubjectEnrolled.pending
   end
 
   def new
