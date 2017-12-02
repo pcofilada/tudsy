@@ -14,5 +14,10 @@ Rails.application.routes.draw do
     resources :exams, only: %i[new create]
   end
 
-  resources :subject_enrolleds
+  resources :subject_enrolleds do
+    collection do
+      get :view
+      patch :enroll
+    end
+  end
 end
