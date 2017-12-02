@@ -15,6 +15,9 @@ Rails.application.routes.draw do
       resources :answers, only: :create
     end
     resources :documents, only: %i[index create destroy]
+    member do
+      get :conference
+    end
   end
 
   resources :subject_enrolleds do
