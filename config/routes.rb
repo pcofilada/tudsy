@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :subject_enrolleds do
+  resources :subject_enrolleds, path: 'discover' do
     collection do
       get :view
       patch :enroll
