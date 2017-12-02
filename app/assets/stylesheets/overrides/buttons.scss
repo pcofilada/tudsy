@@ -15,6 +15,10 @@
   &:hover {
     color: darken($color, 15%);
   }
+  &:focus {
+    outline: none;
+    border-color: darken($color, 15%);
+  }
 }
 
 .btn {
