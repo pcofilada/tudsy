@@ -1,3 +1,28 @@
-%h3 Dashboard
+%aside.main-sidebar
+  %header.sideheader
+    .brand.clearfix
+      = link_to 'TUDSY', authenticated_root_path, method: :get, :class=> "pull-left"
+      .dropdown.pull-right
+        %button#sdd{:class=>"btn-icon dropdown-toggle", :type=>"button", "data-toggle"=>"dropdown", "aria-haspopup": true, "aria-expanded"=>false}
+          %i.icon.ion-gear-a
+        %ul.dropdown-menu{"aria-labelledby"=>"sdd"}
+          %li
+            %a{:href=>"#"} Change Password
+          -# %li.divider{:role=>"separator"}
+          %li
+            = link_to 'Sign out', destroy_user_session_path, method: :delete
+    .account-description
+      %img{:src=>"http://i.pravatar.cc/300"}
+      %p.name Jane Doe
+      %p.email example@email.com
+  %nav.navsidebar
+    .item
+      %a{:href=>"#", :class=>"active"}
+        link 1
+        %span.badge 1
+    .item
+      %a{:href=>"#"}link 2
+    .item
+      %a{:href=>"#"}link 3
 
-= link_to 'Sign out', destroy_user_session_path, method: :delete
+-# = link_to 'Sign out', destroy_user_session_path, method: :delete
