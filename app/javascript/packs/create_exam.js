@@ -87,8 +87,8 @@ class CreateExam extends Component {
       .then(response => {
         return response.json();
       })
-      .then(json => {
-        console.log(json);
+      .then(data => {
+        console.log(data);
       })
       .catch(error => {
         console.log(error);
@@ -200,7 +200,7 @@ class CreateExam extends Component {
 
 document.addEventListener('DOMContentLoaded', () => {
   const container = document.getElementById('create-exam');
-  const subjectId = container.getAttribute('data-subject-id')
+  const subjectId = container.getAttribute('data-subject-id');
 
   render(
     <CreateExam subjectId={subjectId} />,

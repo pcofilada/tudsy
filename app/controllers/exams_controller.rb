@@ -12,10 +12,20 @@ class ExamsController < ApplicationController
     end
   end
 
+  def show
+    exam = @subject.exams.find(params[:id])
+
+    respond_to do |format|
+      format.html
+      format.json { render json: exam }
+    end
+  end
+
   private
 
   def set_subject
-    @subject = current_user.subjects.find(params[:subject_id])
+    @subject = current_user.subjects.find(params[:subject_id]) if current_user.professional?
+    @subject = Subject.find(params[:subject_id]) if current_user.student?
   end
 
   def exam_params
