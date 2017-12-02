@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
+import moment from 'moment';
 
 class CreateExam extends Component {
   constructor (props) {
@@ -7,6 +8,7 @@ class CreateExam extends Component {
 
     this.state = {
       title: '',
+      duration: 0,
       items: [
         { question: '', answer: '' },
       ],
@@ -14,6 +16,7 @@ class CreateExam extends Component {
 
     this.addItem = this.addItem.bind(this);
     this.handleTitleChange = this.handleTitleChange.bind(this);
+    this.handleDurationChange = this.handleDurationChange.bind(this);
     this.handleItemChange = this.handleItemChange.bind(this);
     this.removeItem = this.removeItem.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -21,6 +24,19 @@ class CreateExam extends Component {
 
   handleTitleChange (event) {
     this.setState({ title: event.target.value });
+  }
+
+  handleDurationChange (event) {
+    let duration;
+    const value = event.target.value;
+
+    if (value.length > 0) {
+      duration = moment(value, 'HH:mm').diff(moment().startOf('day'), 'seconds');
+    } else {
+      duration = 0;
+    }
+
+    this.setState({ duration });
   }
 
   handleItemChange (event, index, field) {
@@ -41,7 +57,7 @@ class CreateExam extends Component {
   handleFormSubmit (event) {
     event.preventDefault();
 
-    const { title, items } = this.state;
+    const { title, duration, items } = this.state;
     const { subjectId } = this.props;
     const questions = items.reduce((result, item, index) => {
 			result[index] = {};
@@ -52,6 +68,7 @@ class CreateExam extends Component {
     const data = {
       exam: {
         title,
+        duration,
         questions,
       }
     };
@@ -97,13 +114,36 @@ class CreateExam extends Component {
   }
 
   renderTitleInput () {
+    const { title } = this.state;
+
     return (
       <div className="form-group">
         <input
           type="text"
           placeholder="Exam Title"
           className="form-control"
+          value={title}
           onChange={this.handleTitleChange}
+        />
+      </div>
+    );
+  }
+
+  renderDurationInput () {
+    const { duration } = this.state;
+    const convertedDuration = moment()
+      .startOf('day')
+      .seconds(duration)
+      .format('HH:mm');
+
+    return (
+      <div className="form-group">
+        <input
+          type="text"
+          placeholder="00:00"
+          className="form-control"
+          value={convertedDuration}
+          onChange={this.handleDurationChange}
         />
       </div>
     );
@@ -150,6 +190,7 @@ class CreateExam extends Component {
     return (
       <form onSubmit={this.handleFormSubmit}>
         {this.renderTitleInput()}
+        {this.renderDurationInput()}
         {this.renderQuestions()}
         <button>Submit</button>
       </form>

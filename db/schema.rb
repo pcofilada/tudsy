@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171202105413) do
+ActiveRecord::Schema.define(version: 20171202133603) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20171202105413) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.jsonb "questions"
+    t.integer "duration"
     t.index ["questions"], name: "index_exams_on_questions", using: :gin
     t.index ["subject_id"], name: "index_exams_on_subject_id"
   end
@@ -41,7 +42,7 @@ ActiveRecord::Schema.define(version: 20171202105413) do
   create_table "subject_enrolleds", force: :cascade do |t|
     t.integer "student_id"
     t.bigint "subject_id"
-    t.integer "status"
+    t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["student_id"], name: "index_subject_enrolleds_on_student_id"
