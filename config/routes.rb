@@ -11,7 +11,9 @@ Rails.application.routes.draw do
   root 'home#index'
 
   resources :subjects do
-    resources :exams, only: %i[new create]
+    resources :exams, only: %i[new create show] do
+      resources :answers, only: :create
+    end
   end
 
   resources :subject_enrolleds do

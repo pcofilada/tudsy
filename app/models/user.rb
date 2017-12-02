@@ -4,6 +4,15 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_one :profile
   delegate :first_name, :last_name, :fullname, to: :profile
+
+  has_one :profile
+
+  def professional?
+    type == 'Professional'
+  end
+
+  def student?
+    type == 'Student'
+  end
 end
