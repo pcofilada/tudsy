@@ -7,7 +7,6 @@
               background 0.2s ease-in-out;
 
   &:active {
-    box-shadow: none;
     background-color: lighten($color, $amount);
     border-color: lighten($color, $amount);
     color: #fff !important;
@@ -22,15 +21,16 @@
 }
 
 .btn {
+  outline: none !important;
   padding: 8px 32px;
   border-radius: 32px;
   border: 2px solid $cloud-gray;
   background-color: #fff;
   font-weight: 600;
+  transition: color 0.1s ease,
+              border 0.15s ease,
+              background 0.2s ease-in-out;
   &:active {
-    transition: color 0.1s ease,
-                border 0.15s ease,
-                background 0.2s ease-in-out;
     box-shadow: none;
     background-color: lighten($cloud-gray, 5%);
     border-color: lighten($cloud-gray, 5%);
