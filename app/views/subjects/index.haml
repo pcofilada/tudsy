@@ -4,7 +4,8 @@
       .col-md-9
         %header.header.clearfix
           %h3.pull-left Subject List
-          = link_to 'New Subject',new_subject_path, class: 'btn btn-primary pull-right'
+          - if current_user.instructor?
+            = link_to 'New Subject',new_subject_path, class: 'btn btn-primary pull-right'
     .row
       .col-md-9
         - @subjects.each do |subject|
@@ -14,5 +15,6 @@
               %p.p= subject.description
               .actions.pull-right
                 = link_to 'View', subject_path(subject)
-                = link_to 'Edit', edit_subject_path(subject)
-                = link_to 'Delete', subject_path(subject), method: :delete, data: { confirm: 'Are you sure you want to delete this subject?' }
+                - if current_user.instructor?
+                  = link_to 'Edit', edit_subject_path(subject)
+                  = link_to 'Delete', subject_path(subject), method: :delete, data: { confirm: 'Are you sure you want to delete this subject?' }
