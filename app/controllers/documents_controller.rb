@@ -10,7 +10,7 @@ class DocumentsController < ApplicationController
     @document = @subject.documents.new(document_params)
     @document.save
 
-    redirect_to subject_documents_path
+    redirect_to subject_path(@subject)
   end
 
   def destroy
