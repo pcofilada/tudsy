@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20171202075253) do
 
   create_table "exams", force: :cascade do |t|
     t.string "title"
-    t.integer "status"
+    t.integer "status", default: 0
     t.bigint "subject_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
