@@ -19,6 +19,17 @@ class SubjectEnrolledsController < StudentController
     end
   end
 
+  def approve
+    @subject_enrolled = SubjectEnrolled.find(params[:id])
+    if @subject_enrolled.approved!
+      flash[:success]  = 'Successfully approved enrolled student'
+      redirect_to subjects_path
+    else
+      flash[:error] = @subject_enrolled.errors.full_messages.to_sentence
+      render :show
+    end
+  end
+
   private
 
   def set_subject

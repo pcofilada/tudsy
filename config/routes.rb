@@ -19,5 +19,9 @@ Rails.application.routes.draw do
       get :view
       patch :enroll
     end
+
+    member do
+      patch :approve
+    end
   end
 end
