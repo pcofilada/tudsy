@@ -53,6 +53,9 @@
           .form-group
             %label{:for => "exampleInputEmail1"} Your Password
             %input#exampleInputEmail1.form-control{:placeholder => "janedoe@example.com", :type => "password"}/
+          .form-group
+            %button.btn.btn-primary{:type => "button"} Login
+
         .col-md-4
           %h3 Radio Buttons
           .radio
@@ -98,3 +101,25 @@
               %label
                 %input{:disabled => "disabled", :type => "checkbox", :value => ""}/
                 Option two is disabled
+  .container
+    .col-md-6.col-md-offset-3
+      .card
+        %h2.h2
+          TUDSY
+          %small welcome back!
+        .form-group
+          -# %label{:for => "exampleInputEmail1"} Your Email
+          %input#exampleInputEmail1.form-control.card-input{:placeholder => "janedoe@example.com", :type => "email"}/
+        .form-group
+          -# %label{:for => "exampleInputEmail1"} Your Password
+          %input#exampleInputEmail1.form-control.card-input{:placeholder => "Password", :type => "password"}/
+        .form-group.clearfix
+          %button.btn.btn-primary.pull-left{:type => "button"} Login
+          .message.pull-right
+            %span Don't have an account?
+            %a{:href=> "#"} Sign up
+  .container
+    .col-md-6.col-md-offset-3
+
+
+
