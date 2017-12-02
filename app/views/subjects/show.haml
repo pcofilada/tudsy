@@ -4,7 +4,10 @@
       .col-md-9
         %header.header.clearfix
           %h3.pull-left Subject Details
-          = link_to "Create Exam", new_subject_exam_path(@subject.id), method: :get, :class=>"btn btn-primary pull-right"
+          - if current_user.instructor?
+            = link_to 'Start Class Call', conference_subject_path(@subject), class: 'btn btn-primary pull-right'
+          - else
+            = link_to 'Join Class Call', conference_subject_path(@subject), class: 'btn btn-primary pull-right'
     .row
       .col-md-9
         .panel
@@ -17,62 +20,69 @@
             .row
               .col-md-12
                 %p.p= @subject.description
-    .row
-      .col-md-9
-        .panel
-          .panel-body.container-fluid
-            %h3 Enrolled Students
-          %table.table
-            %thead
-              %tr
-                %th Fullname
-                %th Email
-                %th Date Enrolled
-            %tbody
-              - @approveds.each do |approved|
+    - if current_user.instructor?
+      .row
+        .col-md-9
+          .panel
+            .panel-body.container-fluid
+              %h3 Enrolled Students
+            %table.table
+              %thead
                 %tr
-                  %td= approved.student.fullname
-                  %td= approved.student.email
-                  %td= approved.created_at.strftime('%B %d, %Y')
+                  %th Fullname
+                  %th Email
+                  %th Date Enrolled
+              %tbody
+                - @approveds.each do |approved|
+                  %tr
+                    %td= approved.student.fullname
+                    %td= approved.student.email
+                    %td= approved.created_at.strftime('%B %d, %Y')
 
-    .row
-      .col-md-9
-        .panel
-          .panel-body.container-fluid
-            %h3 Pending Request
-          %table.table
-            %thead
-              %tr
-                %th Fullname
-                %th Email
-                %th Date Enrolled
-                %th
-            %tbody
-              - @pendings.each do |pending|
+      .row
+        .col-md-9
+          .panel
+            .panel-body.container-fluid
+              %h3 Pending Request
+            %table.table
+              %thead
                 %tr
-                  %td= pending.student.fullname
-                  %td= pending.student.email
-                  %td= pending.created_at.strftime('%B %d, %Y')
-                  %td.actions
-                    = link_to 'Approved', approve_subject_enrolled_path(pending), method: :patch
+                  %th Fullname
+                  %th Email
+                  %th Date Enrolled
+                  %th
+              %tbody
+                - @pendings.each do |pending|
+                  %tr
+                    %td= pending.student.fullname
+                    %td= pending.student.email
+                    %td= pending.created_at.strftime('%B %d, %Y')
+                    %td.actions
+                      = link_to 'Approved', approve_subject_enrolled_path(pending), method: :patch
     .row
       .col-md-9
         .panel
           .panel-body.container-fluid
             %h3.pull-left Exams
-            = link_to 'New Exam', new_subject_exam_path(@subject), class: 'btn btn-success pull-right'
+            - if current_user.instructor?
+              = link_to 'New Exam', new_subject_exam_path(@subject), class: 'btn btn-success pull-right'
           %table.table
             %thead
               %tr
                 %th Title
                 %th Status
                 %th Date
+                %th
             %tbody
               - @exams.each do |exam|
                 %tr
                   %td= exam.title
                   %td= exam.status.camelcase
                   %td= exam.created_at.strftime('%B %d, %Y')
+                  - if current_user.instructor?
+                    %th= link_to 'Edit', '#'
+                  - else
+                    %th= link_to 'Answer', subject_exam_path(@subject, exam)
     .row
       .col-md-9
         .panel
@@ -89,13 +99,14 @@
                     %td= document.name
                     %td= document.created_at.strftime('%B %d, %Y')
                     %td= link_to 'Download', document.content.url, target: '_blank'
-            .upload
-              = form_with model: @document, url: subject_documents_path(@subject) do |f|
-                .row
-                  .col-md-5
-                    = f.text_field :name, placeholder: 'Document Name', class: 'form-control'
-                  .col-md-5
-                    = f.file_field :content, class: 'form-control'
-                  .col-md-2
-                    = f.submit 'Upload', class: 'btn btn-success'
+            - if current_user.instructor?
+              .upload
+                = form_with model: @document, url: subject_documents_path(@subject) do |f|
+                  .row
+                    .col-md-5
+                      = f.text_field :name, placeholder: 'Document Name', class: 'form-control'
+                    .col-md-5
+                      = f.file_field :content, class: 'form-control'
+                    .col-md-2
+                      = f.submit 'Upload', class: 'btn btn-success'
   -# = link_to 'Enroll', enroll_subject_enrolleds_path(subject_id: @subject.id), class: 'btn btn-primary', method: :patch

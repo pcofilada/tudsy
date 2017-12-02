@@ -1,5 +1,4 @@
-class ExamsController < ApplicationController
-  before_action :authenticate_user!
+class ExamsController < DashboardController
   before_action :set_subject
 
   def create
