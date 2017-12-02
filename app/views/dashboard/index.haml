@@ -1,3 +1,21 @@
-%h3 Dashboard
+%aside.main-sidebar
+  %header.sideheader
+    .brand
+      = link_to 'TUDSY', authenticated_root_path, method: :get
+      %button{:class=>"btn-icon"}
+        %i.icon.ion-navicon
+    .account-description
+      %img{:src=>"http://i.pravatar.cc/300"}
+      %p.name Jane Doe
+      %p.email example@email.com
+  %nav.navsidebar
+    .item
+      %a{:href=>"#", :class=>"active"}
+        link 1
+        %span.badge 1
+    .item
+      %a{:href=>"#"}link 2
+    .item
+      %a{:href=>"#"}link 3
 
-= link_to 'Sign out', destroy_user_session_path, method: :delete
+-# = link_to 'Sign out', destroy_user_session_path, method: :delete

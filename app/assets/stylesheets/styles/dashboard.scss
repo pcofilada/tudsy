@@ -1,0 +1,92 @@
+.main-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 305px;
+  height: calc(100% - 0px);
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+  background: darken($bg-sidebar, 10%);
+  color: #fff;
+  header.sideheader {
+    display: flex;
+    background-color: darken($bg-sidebar, 10%);
+    flex-direction: column;
+    > .brand {
+      width: 100%;
+      flex: 1 1;
+      a {
+        display: inline-block;
+        font-size: 22px;
+        font-family: $font-2;
+        font-weight: 600;
+        padding: 8px 15px;
+        color: #fff;
+        &:hover {
+          text-decoration: none;
+        }
+      }
+      .btn-icon {
+
+      }
+    }
+  }
+  nav.navsidebar {
+    display: flex;
+    flex-direction: column;
+    background-color: darken($bg-sidebar, 5%);
+    > .item {
+    }
+    > .item a {
+      position: relative;
+      padding: 15px 0 15px 10px;
+      display: block;
+      font-size: 16px;
+      color: darken(#fff, 10%);
+      text-decoration: none;
+      > .badge {
+        position: absolute;
+        right: 5%;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: $tertiary-orange;
+      }
+      &.active {
+        background: darken($bg-sidebar, 3%);
+      }
+      &:hover {
+        background: darken($bg-sidebar, 3%);
+        transition: ease-in-out 0.25s all;
+      }
+    }
+  }
+}
+
+.account-description {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 40px;
+  > img {
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    border: 2px solid lighten($dusk-gray, 5%);
+    box-shadow: 0 0 0 1px #fff;
+  }
+  .name {
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .email {
+    color: darken(#fff, 10%);
+    margin: 0 0 15px 0;
+    font-size: 14px;
+    font-family: $font-2;
+    font-weight: 300;
+  }
+}
