@@ -24,8 +24,7 @@ class ExamsController < ApplicationController
   private
 
   def set_subject
-    @subject = current_user.subjects.find(params[:subject_id]) if current_user.professional?
-    @subject = Subject.find(params[:subject_id]) if current_user.student?
+    @subject = current_user.subjects.find(params[:subject_id])
   end
 
   def exam_params

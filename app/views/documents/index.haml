@@ -1,0 +1,9 @@
+.documents
+  - @documents.each do |document|
+    .document
+      = link_to document.name, document.content.url, target: '_blank'
+      = link_to 'Remove', subject_document_path(@subject, document), method: :delete, data: { confirm: 'Are you sure you want to remove this?' }
+= form_with model: @document, url: subject_documents_path do |f|
+  = f.text_field :name, placeholder: 'Document Name'
+  = f.file_field :content
+  = f.submit
