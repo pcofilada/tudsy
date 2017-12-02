@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171202081813) do
+ActiveRecord::Schema.define(version: 20171202084338) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,10 +26,22 @@ ActiveRecord::Schema.define(version: 20171202081813) do
     t.index ["subject_id"], name: "index_exams_on_subject_id"
   end
 
+  create_table "profiles", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "middle_name"
+    t.integer "age"
+    t.string "gender"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
   create_table "subject_enrolleds", force: :cascade do |t|
     t.integer "student_id"
     t.bigint "subject_id"
-    t.integer "status", default: 0
+    t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["student_id"], name: "index_subject_enrolleds_on_student_id"
