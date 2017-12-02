@@ -2,7 +2,8 @@ class SubjectEnrolledsController < StudentController
   before_action :set_subject, only: %i[view]
 
   def index
-    @subjects = Subject.all
+    enrolled_subject_ids = current_user.subject_enrolleds.pluck(:subject_id).uniq()
+    @subjects = Subject.where('id NOT IN (?)', enrolled_subject_ids)
   end
 
   def view
