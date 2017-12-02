@@ -8,8 +8,8 @@ class User < ApplicationRecord
 
   has_one :profile
 
-  def professional?
-    type == 'Professional'
+  def instructor?
+    type == 'Instructor'
   end
 
   def student?

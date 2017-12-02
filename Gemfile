@@ -18,6 +18,7 @@ gem 'virtus'
 gem 'bootstrap-sass', '~> 3.3.7'
 gem 'jquery-rails'
 gem 'haml', '~> 4.0', '>= 4.0.7'
+gem 'carrierwave', '~> 1.0'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171202151537) do
+ActiveRecord::Schema.define(version: 20171202175120) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,15 @@ ActiveRecord::Schema.define(version: 20171202151537) do
     t.index ["content"], name: "index_answers_on_content", using: :gin
     t.index ["exam_id"], name: "index_answers_on_exam_id"
     t.index ["student_id"], name: "index_answers_on_student_id"
+  end
+
+  create_table "documents", force: :cascade do |t|
+    t.string "name"
+    t.string "content"
+    t.bigint "subject_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["subject_id"], name: "index_documents_on_subject_id"
   end
 
   create_table "exams", force: :cascade do |t|
@@ -89,6 +98,7 @@ ActiveRecord::Schema.define(version: 20171202151537) do
 
   add_foreign_key "answers", "exams"
   add_foreign_key "answers", "users", column: "student_id"
+  add_foreign_key "documents", "subjects"
   add_foreign_key "exams", "subjects"
   add_foreign_key "subject_enrolleds", "users", column: "student_id"
   add_foreign_key "subjects", "users", column: "instructor_id"
