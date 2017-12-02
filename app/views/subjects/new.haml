@@ -1,12 +1,20 @@
-%h3 New Subject
-
-= form_with model: @subject, local: true, html: { multipart: true } do |f|
-  = f.hidden_field :instructor_id
-  .form-group
-    = f.label :title
-    = f.text_field :title, class: 'form-control'
-  .form-group
-    = f.label :description
-    = f.text_field :description, class: 'form-control'
-  .form-actions
-    = f.submit 'Save', class: 'btn btn-success'
+= render "shareds/sidebar"
+.main-content#subjects
+  .container-fluid
+    .row
+      .col-md-9
+        %header.header.clearfix
+          %h3.pull-left New Subject
+    .row
+      .col-md-9
+        .card
+          = form_with model: @subject, local: true, html: { multipart: true } do |f|
+            = f.hidden_field :instructor_id
+            .form-group
+              = f.label :title
+              = f.text_field :title, class: 'form-control'
+            .form-group
+              = f.label :description
+              = f.text_field :description, class: 'form-control'
+            .form-actions
+              = f.submit 'Save', class: 'btn btn-success'

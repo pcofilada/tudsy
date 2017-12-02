@@ -1,3 +1,11 @@
-%h3 Edit Subject
-
-= render 'form'
+= render "shareds/sidebar"
+.main-content#subjects
+  .container-fluid
+    .row
+      .col-md-9
+        %header.header.clearfix
+          %h3.h3 Edit Subject
+    .row
+      .col-md-9
+        .card
+          = render 'form'

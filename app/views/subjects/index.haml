@@ -1,12 +1,19 @@
-%h3 Subject list
-
-= link_to 'New Subject',new_subject_path, class: 'btn btn-primary'
-
-
-- @subjects.each do |subject|
-  %p= subject.title
-  %p= subject.description
-  .actions
-    = link_to 'View', subject_path(subject)
-    = link_to 'Edit', edit_subject_path(subject)
-    = link_to 'Destroy', subject_path(subject), method: :delete, data: { confirm: 'Are you sure you want to delete this subject?' }
+= render "shareds/sidebar"
+.main-content#subjects
+  .container-fluid
+    .row
+      .col-md-9
+        %header.header.clearfix
+          %h3.pull-left Subject List
+          = link_to 'New Subject',new_subject_path, class: 'btn btn-primary pull-right'
+    .row
+      .col-md-9
+        - @subjects.each do |subject|
+          .panel
+            .panel-body.clearfix
+              %h4.h4= subject.title
+              %p.p= subject.description
+              .actions.pull-right
+                = link_to 'View', subject_path(subject)
+                = link_to 'Edit', edit_subject_path(subject)
+                = link_to 'Delete', subject_path(subject), method: :delete, data: { confirm: 'Are you sure you want to delete this subject?' }
