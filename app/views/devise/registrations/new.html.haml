@@ -1,34 +1,41 @@
-%h2 Sign up
-= form_with(model: @form,  url: registration_path(resource_name), local: true) do |f|
-  .field
-    = f.label :first_name
-    %br/
-    = f.text_field :first_name
-  .field
-    = f.label :last_name
-    %br/
-    = f.text_field :last_name
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true
-  .field
-    = f.label :password
-    - if @minimum_password_length
-      %em
-        (#{@minimum_password_length} characters minimum)
-    %br/
-    = f.password_field :password, autocomplete: "off"
-  .field
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation, autocomplete: "off"
-  .field
-    = f.label :type
-    %br/
-    = f.label :type, 'Student', value: 'student'
-    = f.radio_button :type, 'student', checked: true
-    = f.label :type, 'Instructor', value: 'instructor'
-    = f.radio_button :type, 'instructor'
-  .actions
-    = f.submit "Sign up"
+.container
+  .row
+    .col-md-6.col-md-offset-3
+      .card#signup
+        %h2.h2
+          TUDSY
+          %small.small create new account
+        = form_with(model: @form,  url: registration_path(resource_name), local: true) do |f|
+          .form-group
+            = f.label :first_name
+            = f.text_field :first_name, class: 'form-control', placeholder: "Jane"
+          .form-group
+            = f.label :last_name
+            = f.text_field :last_name, class: 'form-control', placeholder: "Doe"
+          .form-group
+            = f.label :email
+            = f.email_field :email, autofocus: true, class: 'form-control', placeholder: "jane@example.com"
+          .form-group
+            = f.label :password
+            - if @minimum_password_length
+              %em
+                (#{@minimum_password_length} characters minimum)
+            = f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: "●●●●●●"
+          .form-group
+            = f.label :password_confirmation
+            = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', placeholder: "●●●●●●"
+          .form-group
+            = f.label :type, "Type of Account"
+            %br/
+            %label.inline-radio
+              = f.radio_button :type, 'student', checked: true
+              = f.label :type, 'Student', value: 'student'
+            %label.inline-radio
+              = f.radio_button :type, 'instructor'
+              = f.label :type, 'Instructor', value: 'instructor'
+          .form-group.clearfix
+            %p.pull-left.message
+              Already have an account?
+              - if controller_name != 'sessions'
+                = link_to "Log in", new_session_path(resource_name)
+            = f.submit "Sign up", class: "btn btn-success pull-right"
