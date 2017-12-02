@@ -13,8 +13,8 @@
             = link_to 'Sign out', destroy_user_session_path, method: :delete
     .account-description
       %img{:src=>"http://i.pravatar.cc/300"}
-      %p.name Jane Doe
-      %p.email example@email.com
+      %p.name= current_user.profile.fullname
+      %p.email= current_user.email
   %nav.navsidebar
     .item
       = link_to 'Subjects', subjects_path, method: :get
