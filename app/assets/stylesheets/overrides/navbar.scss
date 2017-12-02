@@ -1,0 +1,18 @@
+.navbar-default {
+  background: rgba(255, 255, 255, 0.5);
+  border-bottom: 1px solid $cloud-gray;
+  .navbar-brand {
+    font-weight: 600;
+    font-family: $font-2;
+    text-transform: uppercase;
+  }
+  .navbar-nav > li {
+    a {
+      max-height: 55px;
+      font-weight: 600;
+      &:hover {
+        color: $secondary-blue;
+      }
+    }
+  }
+}

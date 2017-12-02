@@ -6,10 +6,11 @@
     <title>Tudsy</title>
     <link ref="stylesheet" type="text/css" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,700|Nunito:400,700" rel="stylesheet" />
-    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= stylesheet_link_tag    'application', media: 'all', "data-turbolinks-track" => "reload" %>
   </head>
 
   <body>
     <%= yield %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => "reload"  %>
   </body>
 </html>
