@@ -12,10 +12,10 @@ class SubjectEnrolledsController < StudentController
     @subject_enrolled = SubjectEnrolled.new(enroll_params)
     if @subject_enrolled.save
       flash[:success] = 'Successfully enrolled to subject'
-      redirect_to subject_enrolleds_path
+      redirect_to root_path
     else 
       flash[:error] = @subject_enrolled.errors.full_messages.to_sentence
-      render :show
+      render :index
     end
   end
 
