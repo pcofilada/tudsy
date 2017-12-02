@@ -1,6 +1,16 @@
-%h3 Enroll Subject
+%h3 Subject List
 
-- @subjects.each do |subject|
-  = subject.title
-  = subject.description
-  = link_to 'View', view_subject_enrolleds_path(subject_id: subject.id)
+%table.table
+  %thead
+    %tr
+      %th Title
+      %th Description
+      %th Instructor
+  %tbody
+    - @subjects.each do |subject|
+      %tr
+        %td= subject.title
+        %td= subject.description
+        %td= subject.instructor.fullname
+        %td= link_to 'Enroll', enroll_subject_enrolleds_path(subject_id: subject.id), method: :patch
+
