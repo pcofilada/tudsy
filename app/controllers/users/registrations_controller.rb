@@ -1,7 +1,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
 
   def new
-    @form = SignupForm.new(auto_params)
+    @form = SignupForm.new()
   end
 
   def create
@@ -23,15 +23,5 @@ class Users::RegistrationsController < Devise::RegistrationsController
       :first_name, :last_name, :type,
       :email, :password, :password_confirmation
     )
-  end
-
-  def auto_params
-    {
-      first_name: 'Glenn Garfield',
-      last_name: 'ladesma',
-      email: 'ladesmaglenngarfield@gmail.com',
-      password: 'password',
-      password_confirmation: 'password',
-    }
   end
 end
