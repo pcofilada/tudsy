@@ -16,3 +16,32 @@
   }
 }
 
+#create-exam {
+  .qna {
+    margin: 0 -15px;
+    padding: 0 15px;
+  }
+  .qna > .qna-row {
+    position: relative;
+
+    .btn-delete {
+      position: absolute;
+      right: 0;
+      top: 0;
+      background-color: transparent;
+      border: none;
+      outline: none;
+      padding: 0;
+      height: 26px;
+      width: 26px;
+      > i {
+        font-size: 22px;
+        color: $red-rose;
+        line-height: 2px;
+      }
+    }
+  }
+}
+
+
+
