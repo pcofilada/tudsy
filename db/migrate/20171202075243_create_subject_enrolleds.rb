@@ -3,7 +3,7 @@ class CreateSubjectEnrolleds < ActiveRecord::Migration[5.1]
     create_table :subject_enrolleds do |t|
       t.integer :student_id
       t.belongs_to :subject
-      t.integer :status
+      t.integer :status, default: 0
       t.timestamps
     end
 

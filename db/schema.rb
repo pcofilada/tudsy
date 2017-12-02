@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20171202081813) do
   create_table "subject_enrolleds", force: :cascade do |t|
     t.integer "student_id"
     t.bigint "subject_id"
-    t.integer "status"
+    t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["student_id"], name: "index_subject_enrolleds_on_student_id"
