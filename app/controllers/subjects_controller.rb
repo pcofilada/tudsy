@@ -3,7 +3,14 @@ class SubjectsController < DashboardController
   layout 'application', only: :conference
 
   def index
-    @subjects = current_user.subjects.order(created_at: :desc)
+    if current_user.student?
+      @subjects = current_user.subjects
+                              .joins(:subject_enrolleds)
+                              .where(subject_enrolleds: { status: 'approved' })
+                              .order(created_at: :desc)
+    else
+      @subjects = current_user.subjects.order(created_at: :desc)
+    end
   end
 
   def show

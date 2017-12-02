@@ -215,7 +215,7 @@ class CreateExam extends Component {
           {this.renderDurationInput()}
           <hr />
           {this.renderQuestions()}
-          <button className="btn btn-success pull-right" type="button">Submit</button>
+          <button className="btn btn-success pull-right" type="submit">Submit</button>
         </form>
       </div>
     );
