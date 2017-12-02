@@ -4,7 +4,7 @@
       .col-md-9
         %header.header.clearfix
           %h3.pull-left Subject Details
-          = link_to 'Start Class Call', '#', class: 'btn btn-primary pull-right'
+          = link_to "Create Exam", new_subject_exam_path(@subject.id), method: :get, :class=>"btn btn-primary pull-right"
     .row
       .col-md-9
         .panel
