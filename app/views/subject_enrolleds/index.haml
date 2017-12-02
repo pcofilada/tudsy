@@ -1,0 +1,16 @@
+#subjects.main-content
+  .container-fluid
+    .row
+      .col-md-9
+        %header.header.clearfix
+          %h3.pull-left Subject List
+    .row
+      .col-md-9
+        - @subjects.each do |subject|
+          .panel
+            .panel-body.clearfix
+              %h4.h4= subject.title
+              %p.p= subject.description
+              %p.p Instructor: #{subject.instructor.fullname}
+              .actions.pull-right
+                = link_to 'Enroll', enroll_subject_enrolleds_path(subject_id: subject.id), method: :patch
