@@ -1,0 +1,23 @@
+%h3 Exam Results
+
+
+%p
+  %span You've got
+  %span= @answer.total_score
+  %span out of
+  %span= @answer.exam.questions.count
+
+%h3 Results
+
+%table
+  %thead
+    %tr
+      %th Question
+      %th Correct Answer
+      %th Your Answer
+  %tbody
+    - @answer.results.each do |result|
+      %tr
+        %td= result[:question]
+        %td= result[:correct_answer]
+        %td= result[:student_answer]

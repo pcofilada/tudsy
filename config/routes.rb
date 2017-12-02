@@ -12,7 +12,11 @@ Rails.application.routes.draw do
 
   resources :subjects do
     resources :exams, only: %i[new create show] do
-      resources :answers, only: :create
+      resources :answers, only: :create do
+        member do
+          get :results
+        end
+      end
     end
     resources :documents, only: %i[index create destroy]
     member do

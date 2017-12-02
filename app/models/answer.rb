@@ -2,14 +2,6 @@ class Answer < ApplicationRecord
   belongs_to :exam
   belongs_to :student
 
-  def preview_results
-    {
-      total_score: total_score,
-      no_questions: exam.questions.count,
-      results: results,
-    }
-  end
-
   def results
     results = []
     exam.questions.each_with_index do |question, index|

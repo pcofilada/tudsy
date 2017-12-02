@@ -9,6 +9,7 @@ class AnswerExam extends Component {
       title: '',
       questions: [],
       answers: [],
+      loading: false
     };
 
     this.handleSelectAnswer = this.handleSelectAnswer.bind(this);
@@ -87,7 +88,17 @@ class AnswerExam extends Component {
 
     fetch(`/subjects/${subjectId}/exams/${examId}/answers`, config)
       .then(response => {
-        console.log(response)
+        return response.json();
+      })
+      .then(data => {
+        this.setState({ loading: true })
+        setTimeout(() => {
+          console.log('Collection some information please wait..');
+        }, 5000)
+        const student = data.answer.student_id
+        const exam =  data.answer.exam_id
+        const answer = data.answer.id
+        window.location = `/subjects/${student}/exams/${exam}/answers/${answer}/results`
       })
       .then(error => {
         console.log(error);
@@ -175,6 +186,8 @@ class AnswerExam extends Component {
   }
 
   render () {
+    if (this.state.loading) return <p><i className='icon ion-load-c spinner' />Loading</p>
+
     return (
       <form onSubmit={this.handleFormSubmit}>
         {this.renderExamDetails()}
