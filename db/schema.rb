@@ -26,6 +26,16 @@ ActiveRecord::Schema.define(version: 20171202081813) do
     t.index ["subject_id"], name: "index_exams_on_subject_id"
   end
 
+  create_table "subject_enrolleds", force: :cascade do |t|
+    t.integer "student_id"
+    t.bigint "subject_id"
+    t.integer "status", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["student_id"], name: "index_subject_enrolleds_on_student_id"
+    t.index ["subject_id"], name: "index_subject_enrolleds_on_subject_id"
+  end
+
   create_table "subjects", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -54,5 +64,6 @@ ActiveRecord::Schema.define(version: 20171202081813) do
   end
 
   add_foreign_key "exams", "subjects"
+  add_foreign_key "subject_enrolleds", "users", column: "student_id"
   add_foreign_key "subjects", "users", column: "instructor_id"
 end
