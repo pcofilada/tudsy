@@ -18,7 +18,7 @@
     > .brand {
       width: 100%;
       flex: 1 1;
-      a {
+      > a {
         display: inline-block;
         font-size: 22px;
         font-family: $font-2;
@@ -30,7 +30,18 @@
         }
       }
       .btn-icon {
-
+        width: 32px;
+        height: 32px;
+        outline: none;
+        margin: 8px;
+        i {
+          line-height: 0;
+          position: absolute;
+          font-size: 22px;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
       }
     }
   }
