@@ -1,6 +1,7 @@
 @import "variables";
 @import "vendors";
 @import "utils/globals";
+@import "utils/error-messages";
 
 // overrides
 @import "overrides/navbar";
@@ -10,3 +11,4 @@
 //styles
 @import "styles/card-login";
 @import "styles/card-signup";
+@import "styles/card-forgot";
