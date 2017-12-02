@@ -13,12 +13,16 @@ gem 'sass-rails', '~> 5.0'
 gem 'webpacker'
 gem 'jbuilder', '~> 2.5'
 gem 'devise'
+gem 'virtus'
 
 gem 'bootstrap-sass', '~> 3.3.7'
 gem 'jquery-rails'
+gem 'haml', '~> 4.0', '>= 4.0.7'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'erb2haml'
+  gem 'pry', '~> 0.11.3'
 end
 
 group :development do

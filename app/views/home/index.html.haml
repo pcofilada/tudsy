@@ -1,0 +1,100 @@
+%body
+  %nav.navbar.navbar-default.navbar-static-top
+    .container-fluid
+      / Brand and toggle get grouped for better mobile display
+      %header.navbar-header
+        %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+          %span.sr-only Toggle navigation
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+        %a.navbar-brand{:href => "#"} Tudsy
+      / Collect the nav links, forms, and other content for toggling
+      #bs-example-navbar-collapse-1.collapse.navbar-collapse
+        %ul.nav.navbar-nav.navbar-right
+          %li
+            %a{:href => "#"} Home
+          %li
+            %a{:href => "#"} About
+          %li
+            %a{:href => "#"} Login
+          %li
+            %a{:href => "#"} Signup
+      / /.navbar-collapse
+  #homepage.fluid-container
+    .container.headings
+      %h1.h1 Heading 1
+      %h2.h2 Heading 2
+      %h3.h3 Heading 3
+      %h4.h4 Heading 4
+      %h5.h5 Heading 5
+      %h6.h6 Heading 6
+    %br/
+    .container.inputs-buttons
+      .row
+        .col-md-12
+          %h3 Buttons
+      .row
+        .col-md-12
+          %button.btn.btn-default{:type => "button"} Default
+          %button.btn.btn-primary{:type => "button"} Primary
+          %button.btn.btn-success{:type => "button"} Success
+          %button.btn.btn-info{:type => "button"} Info
+          %button.btn.btn-warning{:type => "button"} Warning
+          %button.btn.btn-danger{:type => "button"} Danger
+          %button.btn.btn-link{:type => "button"} Link
+      %br/
+      .row
+        .col-md-4
+          %h3 Inputs
+          .form-group
+            %label{:for => "exampleInputEmail1"} Your Email
+            %input#exampleInputEmail1.form-control{:placeholder => "janedoe@example.com", :type => "email"}/
+          .form-group
+            %label{:for => "exampleInputEmail1"} Your Password
+            %input#exampleInputEmail1.form-control{:placeholder => "janedoe@example.com", :type => "password"}/
+        .col-md-4
+          %h3 Radio Buttons
+          .radio
+            %label.radio-inline
+              %input#inlineRadio1{:name => "inlineRadioOptions", :type => "radio", :value => "option1"}/
+              1
+            %label.radio-inline
+              %input#inlineRadio2{:name => "inlineRadioOptions", :type => "radio", :value => "option2"}/
+              2
+            %label.radio-inline
+              %input#inlineRadio3{:name => "inlineRadioOptions", :type => "radio", :value => "option3"}/
+              3
+          .radio
+            %label
+              %input#optionsRadios1{:checked => "checked", :name => "optionsRadios", :type => "radio", :value => "option1"}/
+              Option one is this and that—be sure to include why it's great
+          .radio
+            %label
+              %input#optionsRadios2{:name => "optionsRadios", :type => "radio", :value => "option2"}/
+              Option two can be something else and selecting it will deselect option one
+          .radio.disabled
+            %label
+              %input#optionsRadios3{:disabled => "disabled", :name => "optionsRadios", :type => "radio", :value => "option3"}/
+              Option three is disabled
+        .col-md-4
+          %h3 Checkboxes
+          .form-group
+            .checkbox
+              %label.checkbox-inline
+                %input#inlineCheckbox1{:type => "checkbox", :value => "option1"}/
+                1
+              %label.checkbox-inline
+                %input#inlineCheckbox2{:type => "checkbox", :value => "option2"}/
+                2
+              %label.checkbox-inline
+                %input#inlineCheckbox3{:type => "checkbox", :value => "option3"}/
+                3
+            .checkbox
+              %label
+                %input{:type => "checkbox", :value => ""}/
+                Option one is this and that—be sure to include why it's great
+            .checkbox.disabled
+              %label
+                %input{:disabled => "disabled", :type => "checkbox", :value => ""}/
+                Option two is disabled
