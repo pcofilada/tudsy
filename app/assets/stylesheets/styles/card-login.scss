@@ -1,10 +1,22 @@
+#login {
+  margin-top: 15vh;
+}
+
 .card {
   background-color: #fff;
   padding: 15px 15px;
   margin-bottom: 20px;
   border-radius: 4px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), 0 0 1px $bg;
-  .message {
+  .remember-me {
     margin-top: 10px;
+  }
+  .card-footer {
+    margin-top: 5px;
+    padding-top: 15px;
+    border-top: 4px solid $bg;
+    > p {
+      margin: 0;
+    }
   }
 }
