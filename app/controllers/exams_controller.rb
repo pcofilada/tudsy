@@ -12,11 +12,15 @@ class ExamsController < DashboardController
   end
 
   def results
-
+    @exam = Exam.find(params[:id])
+    @answer = @exam.answers.where(student: current_user).first
   end
 
   def show
     exam = @subject.exams.find(params[:id])
+    answer = exam.answers.where(student: current_user).first
+
+    redirect_to results_subject_exam_path(@subject, exam) if answer
 
     respond_to do |format|
       format.html
