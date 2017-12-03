@@ -5,10 +5,10 @@ Rails.application.routes.draw do
   }
 
   authenticated do
-    root to: 'dashboard#index', as: :authenticated_root
+    root to: 'subjects#index', as: :authenticated_root
   end
   
-  root 'home#index'
+  root to: 'dashboard#index'
 
   resources :subjects do
     resources :exams, only: %i[new create show] do
