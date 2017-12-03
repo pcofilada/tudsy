@@ -1,0 +1,15 @@
+-# <div id="answer-exam" data-subject-id='<%= params[:subject_id] %>' data-exam-id='<%= params[:id] %>' />
+-# <%= javascript_pack_tag 'answer_exam' %>
+.main-content#subjects
+  .container-fluid
+    .row
+      .col-md-9
+        %header.header.clearfix
+          %h3.pull-left
+            Examination
+    .row
+      .col-md-9
+        .card
+          #answer-exam{"data-subject-id"=> @subject.id, "data-exam-id"=>params[:id]}
+          = javascript_pack_tag 'answer_exam'
+

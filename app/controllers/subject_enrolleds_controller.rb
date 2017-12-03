@@ -3,7 +3,11 @@ class SubjectEnrolledsController < StudentController
 
   def index
     enrolled_subject_ids = current_user.subject_enrolleds.pluck(:subject_id).uniq()
-    @subjects = Subject.where('id NOT IN (?)', enrolled_subject_ids)
+    if enrolled_subject_ids.count > 0
+      @subjects = Subject.where('id NOT IN (?)', enrolled_subject_ids)
+    else
+      @subjects = Subject.all
+    end
   end
 
   def view
@@ -15,7 +19,7 @@ class SubjectEnrolledsController < StudentController
     if @subject_enrolled.save
       flash[:success] = 'Successfully enrolled to subject'
       redirect_to subject_enrolleds_path
-    else 
+    else
       flash[:error] = @subject_enrolled.errors.full_messages.to_sentence
       render :index
     end
