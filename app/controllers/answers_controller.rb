@@ -1,4 +1,4 @@
-class AnswersController < ApplicationController
+class AnswersController < DashboardController
   before_action :set_exam
   before_action :set_answer, only: %i[results]
 
