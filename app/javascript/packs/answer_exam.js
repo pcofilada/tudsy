@@ -109,7 +109,9 @@ class AnswerExam extends Component {
     const { title } = this.state;
 
     return (
-      <div className="title">{title}</div>
+      <div className="title">
+        <h4 className="h4">{title}</h4>
+      </div>
     );
   }
 
@@ -120,7 +122,7 @@ class AnswerExam extends Component {
       <ol className="questions">
         {Object.keys(questions).map(key => (
           <li className="question" key={key}>
-            <div>{questions[key].item}</div>
+            <div className="strong">{questions[key].item}</div>
             {this.renderChoices(key)}
           </li>
         ))}
@@ -134,7 +136,7 @@ class AnswerExam extends Component {
     if (questions[key].choices) {
       return (
         <div className="choices">
-          <label>
+          <label className="radio-inline">
             <input
               type="radio"
               name={`question-${key}`}
@@ -144,7 +146,7 @@ class AnswerExam extends Component {
             {questions[key].answer}
           </label>
           {questions[key].choices.map(choice => (
-            <label key={choice}>
+            <label key={choice} className="radio-inline">
               <input
                 type="radio"
                 name={`question-${key}`}
@@ -192,7 +194,8 @@ class AnswerExam extends Component {
       <form onSubmit={this.handleFormSubmit}>
         {this.renderExamDetails()}
         {this.renderQuestions()}
-        <button>Submit</button>
+        <hr />
+        <button className="btn btn-primary">Submit</button>
       </form>
     );
   }
